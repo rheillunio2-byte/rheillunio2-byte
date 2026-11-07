@@ -38,13 +38,9 @@ I go by **RETL** online.
 
 <img src="assets/divider.svg" alt="" width="100%">
 
-## Current Focus
-
 <img src="assets/focus-network.svg" alt="Current focus areas: software development, artificial intelligence, web development, research, UI/UX design and technology" width="100%">
 
 <img src="assets/divider.svg" alt="" width="100%">
-
-## Technology Stack
 
 <img src="assets/stack.svg" alt="Technology stack. Languages: Python, JavaScript, TypeScript, HTML and CSS. Frontend: React, Vite. Backend: Node.js, Express. AI: Gemini API, Gen AI SDK. Tooling: Git, GitHub, VS Code." width="100%">
 
