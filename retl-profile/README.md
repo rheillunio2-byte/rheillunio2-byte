@@ -52,56 +52,69 @@ I go by **RETL** online.
 
 ## Featured Projects
 
-<img src="assets/promptpilot-flow.svg" alt="PromptPilot workflow: library, playground, compare lab, versions, analytics" width="100%">
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=17&duration=3000&pause=1000&color=38BDF8&center=true&vCenter=true&width=380&lines=Building+ideas+into+reality.;Code.+Create.+Innovate." />
+</p>
 
 <table>
 <tr>
-<td width="50%" valign="top">
+<td width="50%" align="center" valign="top">
 
 ### PromptPilot
-An AI prompt engineering workspace for creating, organizing, testing, comparing and optimizing prompts. It includes a prompt library, a playground, a side-by-side Compare Lab, version history and analytics.
 
-`React` `TypeScript` `Vite` `Node.js` `Gemini API`
+<img src="https://img.shields.io/badge/AI-Prompt%20Workspace-172554?style=flat-square" />
 
-[View repository →](https://github.com/rheillunio2-byte/Prompt-Pilot)
+<p>AI prompt workspace with a library, playground, comparison tools, and analytics.</p>
 
-</td>
-<td width="50%" valign="top">
-
-### SmartFileOrganizerPro
-A Python desktop application that automatically organizes files into structured folders.
-
-`Python`
-
-Repository: `TODO — add link`
+<a href="https://github.com/rheillunio2-byte/Prompt-Pilot">**View Project →**</a>
 
 </td>
-</tr>
-<tr>
-<td width="50%" valign="top">
+<td width="50%" align="center" valign="top">
 
-### CommitQuest
-A coding and debugging game with XP, achievements, hints and challenges.
+###  SmartFileOrganizerPro
 
-Repository: `TODO — add link`
+<img src="https://img.shields.io/badge/Python-File%20Management-172554?style=flat-square&logo=python&logoColor=FFD43B" />
 
-</td>
-<td width="50%" valign="top">
+<p>Desktop tool that automatically sorts files into organized folders.</p>
 
-### DayForm
-A productivity and scheduling platform with schedule templates.
-
-Repository: `TODO — add link`
+<a href="https://github.com/rheillunio2-byte/SmartFileOrganizerPro">**View Project →**</a>
 
 </td>
 </tr>
 <tr>
-<td colspan="2" valign="top">
+<td width="50%" align="center" valign="top">
+
+###  CommitQuest
+
+<img src="https://img.shields.io/badge/JavaScript-Coding%20Game-172554?style=flat-square&logo=javascript&logoColor=F7DF1E" />
+
+<p>Gamified coding challenges with XP, hints, and achievements.</p>
+
+<a href="https://github.com/rheillunio2-byte/Commit-Quest">**View Project →**</a>
+
+</td>
+<td width="50%" align="center" valign="top">
+
+###  DayForm
+
+<img src="https://img.shields.io/badge/Productivity-Scheduling-172554?style=flat-square" />
+
+<p>Scheduling platform with customizable templates for daily planning.</p>
+
+<a href="https://github.com/rheillunio2-byte/DayForm">**View Project →**</a>
+
+</td>
+</tr>
+</table>
+
+<p align="center">
+  <sub>Designed and developed by <strong>RETL</strong> · Turning ideas into projects.</sub>
+</p>
 
 ### Blood Pressure Transition Modeling
 My published research and its accompanying web-based application. The study models how blood pressure categories change over time, as a basis for hypertension prevention programs.
 
-[Read the publication →](https://www.researchgate.net/publication/406513523_Modeling_Blood_Pressure_Transitions_Using_an_Integrated_Multistate_Markov_Chain-Logistic_Model_with_a_Web-Based_Application_Basis_for_Hypertension_Prevention_Programs) &nbsp;·&nbsp; Web app repository: `TODO — add link`
+[Read the publication →](https://www.researchgate.net/publication/406513523_Modeling_Blood_Pressure_Transitions_Using_an_Integrated_Multistate_Markov_Chain-Logistic_Model_with_a_Web-Based_Application_Basis_for_Hypertension_Prevention_Programs) 
 
 </td>
 </tr>
@@ -136,26 +149,8 @@ Published research that combines a multistate Markov chain with logistic modelin
 
 <img src="assets/achievements.svg" alt="TESDA National Certificate II in Computer Systems Servicing; Google I/O Extended Cagayan de Oro City, September 5, 2026; published research; leadership, public speaking, broadcasting and creative activities" width="100%">
 
-**Academic distinctions:** <!-- TODO: list your actual awards, with issuer and year --> `TODO — add distinctions`
-
-<img src="assets/divider.svg" alt="" width="100%">
-
-## GitHub Statistics
-
-<div align="center">
-
-<img height="170" alt="RETL GitHub stats" src="https://github-readme-stats.vercel.app/api?username=rheillunio2-byte&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0a0e1a&title_color=8b5cf6&icon_color=22d3ee&text_color=c9d1e9">
-<img height="170" alt="Most used languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=rheillunio2-byte&layout=compact&theme=tokyonight&hide_border=true&bg_color=0a0e1a&title_color=8b5cf6&text_color=c9d1e9">
-
-</div>
-
-## Contribution Activity
-
-<div align="center">
-
-<img alt="Contribution activity graph" src="https://github-readme-activity-graph.vercel.app/graph?username=rheillunio2-byte&bg_color=0a0e1a&color=8b5cf6&line=3b82f6&point=22d3ee&area=true&area_color=3b82f6&hide_border=true">
-
-</div>
+**Academic Distinctions:**  
+To view my academic awards, honors, and distinctions, visit my [Personal Portfolio](https://retl.my.canva.site/). Navigate to **About → Educational Background** to see the complete list of my Academic Distinctions, including their respective issuers and years.
 
 <img src="assets/divider.svg" alt="" width="100%">
 
