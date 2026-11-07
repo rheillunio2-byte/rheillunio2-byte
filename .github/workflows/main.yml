@@ -51,19 +51,21 @@ jobs:
           pip install numpy Pillow
 
       # 4. Install system dependencies
+      
       - name: Install FFmpeg and Fonts
         run: |
           sudo apt-get update
           sudo apt-get install -y ffmpeg fonts-inter fonts-dejavu-core
 
-          sudo mkdir -p /usr/share/fonts/opentype/inter
+          # Refresh font cache
+          sudo fc-cache -f -v
 
-          for style in Regular Medium Bold; do
-            FONT=$(fc-match -f '%{file}' "Inter:style=$style")
-            sudo cp "$FONT" "/usr/share/fonts/opentype/inter/Inter-$style.otf"
-          done
+          # Verify installations
+          ffmpeg -version
+          fc-match Inter
+          fc-match "DejaVu Sans"
 
-          sudo fc-cache -f
+          echo "FFmpeg and fonts installed successfully!"
 
       # 5. Generate animated SVG graphics
       - name: Generate Main SVG Graphics
