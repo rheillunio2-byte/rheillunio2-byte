@@ -26,17 +26,37 @@ LEVELS = ["#141c45", "#3b5bdb", "#6d5df0", "#8b5cf6", "#22d3ee"]
 QUERY = """
 query($login:String!){
   user(login:$login){
-    name followers{totalCount} following{totalCount}
-    repositories(affiliations: [OWNER], privacy: PUBLIC, isFork: false, first: 100){
+    name
+    followers{totalCount}
+    following{totalCount}
+    repositories(
+      ownerAffiliations: [OWNER]
+      privacy: PUBLIC
+      isFork: false
+      first: 100
+    ){
       totalCount
-      nodes{ stargazerCount languages(first:6, orderBy:{field:SIZE, direction:DESC}){ edges{ size node{ name color } } } }
+      nodes{
+        stargazerCount
+        languages(first:6, orderBy:{field:SIZE, direction:DESC}){
+          edges{size node{name color}}
+        }
+      }
     }
     contributionsCollection{
-      totalCommitContributions totalPullRequestContributions totalIssueContributions
-      contributionCalendar{ totalContributions weeks{ contributionDays{ date contributionCount weekday } } }
+      totalCommitContributions
+      totalPullRequestContributions
+      totalIssueContributions
+      contributionCalendar{
+        totalContributions
+        weeks{
+          contributionDays{date contributionCount weekday}
+        }
+      }
     }
   }
-}"""
+}
+"""
 
 
 # ---------------------------------------------------------------- data
