@@ -124,16 +124,17 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add assets/
+          git add -A assets/
 
           if git diff --cached --quiet; then
-            echo "No changes detected. Everything is up to date."
-          else
-            git commit -m "chore: automate RETL profile updates"
-
-            git pull --rebase origin main
-
-            git push origin HEAD:main
-
-            echo "Profile assets successfully updated!"
+            echo "No changes detected."
+            exit 0
           fi
+
+          git commit -m "chore: automate RETL profile updates"
+
+          git fetch origin main
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
+
+          echo "Profile assets successfully updated!"
