@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="900" height="64" viewBox="0 0 900 64" role="img" aria-label="Animated typing: Student Developer, Researcher, Aspiring Software Engineer">
+<title>Animated typing: Student Developer, Researcher, Aspiring Software Engineer</title>
+
+<defs>
+<radialGradient id="bg" cx="50%" cy="45%" r="80%"><stop offset="0" stop-color="#101a3d"/><stop offset="0.55" stop-color="#070b1c"/><stop offset="1" stop-color="#04060e"/></radialGradient>
+<linearGradient id="card" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1433"/><stop offset="1" stop-color="#080d22"/></linearGradient>
+<linearGradient id="acc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3b82f6"/><stop offset="0.5" stop-color="#8b5cf6"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+<linearGradient id="rule" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8b5cf6" stop-opacity="0"/><stop offset="0.5" stop-color="#8b5cf6"/><stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/></linearGradient>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#3b82f6" stroke-opacity="0.07" stroke-width="1"/></pattern>
+<filter id="glow" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="glowsm" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<clipPath id="frame"><rect x="6" y="6" width="888" height="52" rx="22"/></clipPath>
+<marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#22d3ee"/></marker>
+
+</defs>
+<style>
+.t{font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif}
+.m{font-family:'SFMono-Regular',Consolas,'Liberation Mono','Courier New',monospace}
+.flow{stroke-dasharray:20 90;animation:flow 3s linear infinite}
+.fd{stroke-dasharray:10 12;animation:flow2 1.4s linear infinite}
+.pulse{animation:pulse 2.4s ease-in-out infinite}
+.scan{animation:scan 9s linear infinite}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 60s linear infinite}
+.spinr{transform-box:fill-box;transform-origin:center;animation:spin 90s linear infinite reverse}
+@keyframes flow{to{stroke-dashoffset:-110}}
+@keyframes flow2{to{stroke-dashoffset:-22}}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes scan{0%{transform:translateY(0)}100%{transform:translateY(var(--h))}}
+@media (prefers-reduced-motion: reduce){.flow,.fd,.pulse,.scan,.spin,.spinr{animation:none}}
+</style>
+
+<rect x="1" y="1" width="898" height="62" rx="14" fill="#090e22" stroke="#25306a" stroke-width="2"/>
+<text class="m" x="34" y="43" font-size="32" fill="#8b5cf6">&gt;_</text>
+<clipPath id="c0"><rect x="282.8" y="6" width="0" height="52"><animate attributeName="width" values="0;0;334.4;334.4;0;0" keyTimes="0;0.0000;0.1200;0.2600;0.3100;1" dur="12s" repeatCount="indefinite"/></rect></clipPath>
+<g clip-path="url(#c0)"><text class="m" x="286.8" y="43" font-size="32" fill="#e8edff" textLength="326.4" lengthAdjust="spacing" filter="url(#glowsm)">Student Developer</text></g>
+<g><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/><rect x="286.8" y="12" width="3" height="40" fill="#22d3ee" filter="url(#glowsm)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.0000;0.3100;0.3200;1" calcMode="discrete" dur="12s" repeatCount="indefinite"/><animate attributeName="x" values="286.8;286.8;613.2;613.2;286.8;286.8" keyTimes="0;0.0000;0.1200;0.2600;0.3100;1" dur="12s" repeatCount="indefinite"/></rect></g>
+<clipPath id="c1"><rect x="350.0" y="6" width="0" height="52"><animate attributeName="width" values="0;0;200.0;200.0;0;0" keyTimes="0;0.3333;0.4533;0.5933;0.6433;1" dur="12s" repeatCount="indefinite"/></rect></clipPath>
+<g clip-path="url(#c1)"><text class="m" x="354.0" y="43" font-size="32" fill="#e8edff" textLength="192.0" lengthAdjust="spacing" filter="url(#glowsm)">Researcher</text></g>
+<g><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/><rect x="354.0" y="12" width="3" height="40" fill="#22d3ee" filter="url(#glowsm)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.3333;0.6433;0.6533;1" calcMode="discrete" dur="12s" repeatCount="indefinite"/><animate attributeName="x" values="354.0;354.0;546.0;546.0;354.0;354.0" keyTimes="0;0.3333;0.4533;0.5933;0.6433;1" dur="12s" repeatCount="indefinite"/></rect></g>
+<clipPath id="c2"><rect x="196.4" y="6" width="0" height="52"><animate attributeName="width" values="0;0;507.2;507.2;0;0" keyTimes="0;0.6667;0.7867;0.9267;0.9767;1" dur="12s" repeatCount="indefinite"/></rect></clipPath>
+<g clip-path="url(#c2)"><text class="m" x="200.4" y="43" font-size="32" fill="#e8edff" textLength="499.2" lengthAdjust="spacing" filter="url(#glowsm)">Aspiring Software Engineer</text></g>
+<g><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/><rect x="200.4" y="12" width="3" height="40" fill="#22d3ee" filter="url(#glowsm)" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.6667;0.9767;0.9867;1" calcMode="discrete" dur="12s" repeatCount="indefinite"/><animate attributeName="x" values="200.4;200.4;699.6;699.6;200.4;200.4" keyTimes="0;0.6667;0.7867;0.9267;0.9767;1" dur="12s" repeatCount="indefinite"/></rect></g>
+</svg>
