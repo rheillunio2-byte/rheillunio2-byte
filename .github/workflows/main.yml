@@ -2,8 +2,8 @@ name: Update GitHub stats
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Refreshed daily at midnight
-  workflow_dispatch: # Allows you to run it by hand
+    - cron: "0 0 * * *" # Runs every day at midnight
+  workflow_dispatch: # Allows you to run it manually
 
 jobs:
   build:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Create the assets folder if it doesn't exist yet
+      # Create assets directory cleanly
       - name: Create assets directory
         run: mkdir -p assets
 
@@ -23,22 +23,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: rheillunio2-byte
 
-      # Move the 3D graph into your assets folder and rename it to match your markdown
+      # Move it directly to match your markdown asset path
       - name: Move 3D graph to assets
         run: mv profile-3d-contrib/profile-green-animate.svg assets/github-3d.svg
 
-      # 2. Generate the GitHub Stats SVG
-      - name: Generate GitHub Stats Card
-        uses: lowlighter/metrics@latest
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          user: rheillunio2-byte
-          template: classic
-          base: header, activity, community, repositories, metadata
-          filename: assets/github-stats.svg
-          config_timezone: Asia/Manila
+      # 2. Fetch the Stats Card directly (Bypasses runner container blocks)
+      - name: Fetch GitHub Stats Card
+        run: |
+          curl -s "https://vercel.app" -o assets/github-stats.svg
 
-      # 3. Commit the new SVGs directly back to your repo
+      # 3. Commit the generated SVGs back to your assets folder
       - name: Commit & Push Changes
         run: |
           git config --local user.email "action@github.com"
