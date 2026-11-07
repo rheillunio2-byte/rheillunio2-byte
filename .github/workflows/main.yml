@@ -1,75 +1,109 @@
 
 name: RETL Profile Automation
 
+# Automatically refresh profile graphics and GitHub statistics.
+# Runs daily, manually, and whenever generator scripts change.
+
 on:
+  schedule:
+    - cron: "17 0 * * *"
+
+  workflow_dispatch:
+
   push:
     branches:
       - main
     paths:
       - "source/**"
       - ".github/workflows/main.yml"
-
-  schedule:
-    - cron: "0 0 * * *"
-
-  workflow_dispatch:
+      - "assets/*.png"
 
 permissions:
   contents: write
 
 concurrency:
-  group: retl-profile-update
+  group: retl-profile-automation
   cancel-in-progress: true
 
 jobs:
   update-profile:
-    name: Generate Profile Assets
+    name: Generate and Update Profile Assets
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Checkout repository
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           persist-credentials: true
 
+      # 2. Configure Python
       - name: Set Up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          cache: pip
 
+      # 3. Install Python dependencies
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install numpy Pillow
 
-      - name: Install FFmpeg
+      # 4. Install system dependencies
+      - name: Install FFmpeg and Fonts
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg
+          sudo apt-get install -y ffmpeg fonts-inter fonts-dejavu-core
 
-      - name: Generate SVG Profile Assets
+          sudo mkdir -p /usr/share/fonts/opentype/inter
+
+          for style in Regular Medium Bold; do
+            FONT=$(fc-match -f '%{file}' "Inter:style=$style")
+            sudo cp "$FONT" "/usr/share/fonts/opentype/inter/Inter-$style.otf"
+          done
+
+          sudo fc-cache -f
+
+      # 5. Generate animated SVG graphics
+      - name: Generate Main SVG Graphics
         run: |
           python source/make_svgs.py
+
+      # 6. Generate intro, portrait and project graphics
+      - name: Generate Featured Project Graphics
+        run: |
           python source/make_v2.py
 
-      - name: Generate Hero Animation Frames
+      # 7. Render hero animation
+      - name: Render Hero Animation Frames
         run: |
           python source/render_hero.py frames
 
+      # 8. Build animated hero GIF
       - name: Build Hero GIF
         working-directory: source
         run: |
           chmod +x build_gif.sh
           ./build_gif.sh
 
-      - name: Generate GitHub Statistics
+      # 9. Generate live GitHub statistics
+      - name: Generate GitHub Statistics and 3D City
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python source/github_stats.py "${{ github.repository_owner }}"
 
-      - name: Commit Generated Assets
+      # 10. Verify generated assets
+      - name: Verify Generated Assets
+        run: |
+          test -s assets/github-stats.svg
+          test -s assets/github-3d.svg
+          test -s assets/hero-animation.gif
+          echo "All required assets generated successfully."
+
+      # 11. Commit generated assets
+      - name: Commit Updated Assets
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -77,8 +111,13 @@ jobs:
           git add assets/
 
           if git diff --cached --quiet; then
-            echo "No generated asset changes."
+            echo "No changes detected. Everything is up to date."
           else
-            git commit -m "chore: automate profile asset updates"
-            git push
+            git commit -m "chore: automate RETL profile updates"
+
+            git pull --rebase origin main
+
+            git push origin HEAD:main
+
+            echo "Profile assets successfully updated!"
           fi
