@@ -2,25 +2,47 @@ name: Update GitHub stats
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Runs automatically every day at midnight
-  workflow_dispatch: # Allows you to manually trigger it by hand
+    - cron: "0 0 * * *" # Refreshed daily at midnight
+  workflow_dispatch: # Allows you to run it by hand
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: generate-github-profile-3d-contrib
+    name: generate-github-profile-3d-and-stats
     steps:
       - uses: actions/checkout@v3
-      
-      - uses: yoshi389111/github-profile-3d-contrib@0.7.1
+
+      # Create the assets folder if it doesn't exist yet
+      - name: Create assets directory
+        run: mkdir -p assets
+
+      # 1. Generate the 3D Graph Model SVG
+      - name: Generate 3D Contribution Graph
+        uses: yoshi389111/github-profile-3d-contrib@0.7.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          USERNAME: ${{ github.repository_owner }}
-          
+          USERNAME: rheillunio2-byte
+
+      # Move the 3D graph into your assets folder and rename it to match your markdown
+      - name: Move 3D graph to assets
+        run: mv profile-3d-contrib/profile-green-animate.svg assets/github-3d.svg
+
+      # 2. Generate the GitHub Stats SVG
+      - name: Generate GitHub Stats Card
+        uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          user: rheillunio2-byte
+          template: classic
+          base: header, activity, community, repositories, metadata
+          filename: assets/github-stats.svg
+          config_timezone: Asia/Manila
+
+      # 3. Commit the new SVGs directly back to your repo
       - name: Commit & Push Changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -A .
-          git commit -m "Generated 3D Profile Graph" || exit 0
+          git add assets/github-3d.svg assets/github-stats.svg
+          git commit -m "Refreshed GitHub Stats and 3D Graph" || exit 0
           git push
