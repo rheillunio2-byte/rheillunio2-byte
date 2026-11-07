@@ -1,42 +1,83 @@
-name: Update GitHub stats
+
+name: RETL Profile Automation
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "source/**"
+      - ".github/workflows/main.yml"
+
   schedule:
-    - cron: "0 0 * * *" # Runs every day at midnight
-  workflow_dispatch: # Allows you to run it manually
+    - cron: "0 0 * * *"
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: retl-profile-update
+  cancel-in-progress: true
 
 jobs:
-  build:
+  update-profile:
+    name: Generate Profile Assets
     runs-on: ubuntu-latest
-    name: generate-github-profile-3d-and-stats
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
-      # Create assets directory cleanly
-      - name: Create assets directory
-        run: mkdir -p assets
+      - name: Set Up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-      # 1. Generate the 3D Graph Model SVG
-      - name: Generate 3D Contribution Graph
-        uses: yoshi389111/github-profile-3d-contrib@0.7.1
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install Pillow
+
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Generate SVG Profile Assets
+        run: |
+          python source/make_svgs.py
+          python source/make_v2.py
+
+      - name: Generate Hero Animation Frames
+        run: |
+          python source/render_hero.py frames
+
+      - name: Build Hero GIF
+        working-directory: source
+        run: |
+          chmod +x build_gif.sh
+          ./build_gif.sh
+
+      - name: Generate GitHub Statistics
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          USERNAME: rheillunio2-byte
-
-      # Move it directly to match your markdown asset path
-      - name: Move 3D graph to assets
-        run: mv profile-3d-contrib/profile-green-animate.svg assets/github-3d.svg
-
-      # 2. Fetch the Stats Card directly (Bypasses runner container blocks)
-      - name: Fetch GitHub Stats Card
         run: |
-          curl -s "https://vercel.app" -o assets/github-stats.svg
+          python source/github_stats.py "${{ github.repository_owner }}"
 
-      # 3. Commit the generated SVGs back to your assets folder
-      - name: Commit & Push Changes
+      - name: Commit Generated Assets
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add assets/github-3d.svg assets/github-stats.svg
-          git commit -m "Refreshed GitHub Stats and 3D Graph" || exit 0
-          git push
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add assets/
+
+          if git diff --cached --quiet; then
+            echo "No generated asset changes."
+          else
+            git commit -m "chore: automate profile asset updates"
+            git push
+          fi
